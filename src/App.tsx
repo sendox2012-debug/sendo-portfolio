@@ -214,7 +214,7 @@ const App: React.FC = () => {
                 <div className="container fade-in-section">
                     <h1>Fullstack JS Developer</h1>
                     <p>
-                        Привет, я <span className="highlight">sendox2012-debug</span>.
+                        Привет, я <span className="highlight">SENDO</span>.
                         Разрабатываю современные веб-приложения, используя React, Node.js и базы данных.
                     </p>
                     <div className="hero-buttons">
