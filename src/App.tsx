@@ -14,7 +14,7 @@ interface Project {
 }
 
 interface TechItem {
-    icon: string;
+    icon: string; // SVG path
     title: string;
     desc: string;
 }
@@ -27,6 +27,24 @@ interface SoftSkill {
 
 // --- Данные ---
 const projectsData: Project[] = [
+    {
+        id: 4,
+        title: "SubData Tracker",
+        shortDesc: "Трекер подписок и расходов",
+        fullDesc: "Веб-приложение для управления платными подписками. Позволяет отслеживать активные сервисы, даты списания и общую статистику расходов. Реализован адаптивный интерфейс и хранение данных.",
+        techStack: ["React", "TypeScript", "Vite", "Vercel"],
+        link: "https://subdata-sendo.vercel.app/",
+        github: "https://github.com/sendox2012-debug" // Укажите точный репозиторий, если есть
+    },
+    {
+        id: 5,
+        title: "PerfStroy",
+        shortDesc: "Сайт строительной компании",
+        fullDesc: "Корпоративный сайт для строительной компании PerfStroy. Включает каталог услуг, портфолио выполненных работ и форму заявки. Оптимизирован для SEO и мобильных устройств.",
+        techStack: ["Vite", "CSS3", "React", "Responsive Design"],
+        link: "https://sendox2012-debug.github.io/perfstroy/",
+        github: "https://github.com/sendox2012-debug"
+    },
     {
         id: 1,
         title: "By Coding AI",
@@ -53,13 +71,22 @@ const projectsData: Project[] = [
         techStack: ["HTML5", "CSS3", "Flexbox", "Grid"],
         link: "https://sendox2012-debug.github.io/CodeMaster-petProject/",
         github: 'https://github.com/sendox2012-debug/CodeMaster-petProject'
+  },
+  {
+    id: 4,
+    title: "The rocket simulator",
+    shortDesc: "Браузерная игра где надо собрать ракету и взлететь",
+    fullDesc: "Полная адаптивность под горизонтальную игру на смартфонах, планшетах и обычную компфортную игру на пк",
+    techStack: ["Vite", "Vue", "CSS3", "TS"],
+    link: "https://the-roket-simulator.vercel.app/"
     }
 ];
 
 const hardSkills = [
-    "JavaScript", "TypeScript", "React", "HTML5", "CSS3", 
-    "Tailwind", "Node.js", "Express", "NestJS", "PostgreSQL", 
-    "MongoDB", "Git", "Docker", "REST API", "Figma"
+    "JavaScript", "TypeScript", "React", "Vue", "Nuxt", 
+    "Node.js", "Fastify", "NestJS", "Python", "FastAPI",
+    "PostgreSQL", "MongoDB", "Docker", "Git", 
+    "Telegram Bots", "Mini Apps", "Figma"
 ];
 
 const softSkills: SoftSkill[] = [
@@ -174,11 +201,32 @@ const App: React.FC = () => {
         setIsMobileMenuOpen(false);
     };
 
+    // Обновленные технологии с иконками (SVG paths)
     const techItems: TechItem[] = [
-        { icon: 'layout', title: 'Frontend', desc: 'React, Vite, Tailwind' },
-        { icon: 'server', title: 'Backend', desc: 'Node.js, Express, NestJS' },
-        { icon: 'database', title: 'Database', desc: 'PostgreSQL, MongoDB' },
-        { icon: 'git-branch', title: 'Tools', desc: 'Git, Docker, Postman' }
+        { 
+            // Layout / Frontend
+            icon: "M3 3h18v18H3zM9 3v18M15 3v18M3 9h18M3 15h18", 
+            title: 'Frontend', 
+            desc: 'React, Vue, Nuxt, Tailwind' 
+        },
+        { 
+            // Server / Backend
+            icon: "M2 10h20M2 14h20M12 2v20M4.93 4.93l14.14 14.14M19.07 4.93L4.93 19.07", 
+            title: 'Backend', 
+            desc: 'Node.js, Fastify, NestJS, FastAPI' 
+        },
+        { 
+            // Automation / Python
+            icon: "M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5", 
+            title: 'Automation', 
+            desc: 'Python Scripts, TG Bots, Mini Apps' 
+        },
+        { 
+            // Database & Tools
+            icon: "M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z", 
+            title: 'Data & Tools', 
+            desc: 'PostgreSQL, MongoDB, Docker, Git' 
+        }
     ];
 
     return (
@@ -212,10 +260,11 @@ const App: React.FC = () => {
                 <div className="blob blob-1"></div>
                 <div className="blob blob-2"></div>
                 <div className="container fade-in-section">
-                    <h1>Fullstack JS Developer</h1>
+                    <h1>Fullstack Developer & Automator</h1>
                     <p>
                         Привет, я <span className="highlight">SENDO</span>.
-                        Разрабатываю современные веб-приложения, используя React, Node.js и базы данных.
+                        Создаю веб-приложения на React/Vue и Node/Fastify. 
+                        Разрабатываю Telegram Mini Apps, ботов и софт для автоматизации на Python.
                     </p>
                     <div className="hero-buttons">
                         <a href="#projects" className="btn btn-primary" onClick={closeMobileMenu}>
@@ -235,7 +284,8 @@ const App: React.FC = () => {
                     {techItems.map((item, idx) => (
                         <div key={idx} className="tech-card fade-in-section">
                             <div className="tech-icon-wrapper">
-                                <i data-lucide={item.icon} style={{ width: 40, height: 40 }}></i>
+                                {/* Используем наш компонент Icon вместо lucide data-attr для надежности */}
+                                <Icon path={item.icon} size={40} color="#3b82f6" />
                             </div>
                             <h3>{item.title}</h3>
                             <p style={{ color: '#94a3b8', marginTop: '8px' }}>{item.desc}</p>
@@ -313,7 +363,7 @@ const App: React.FC = () => {
                     </div>
                     <h2 style={{ color: '#f0f6fc', marginBottom: '12px', fontSize: '1.5rem' }}>Исходный код проектов</h2>
                     <p style={{ color: '#94a3b8', marginBottom: '30px', maxWidth: '600px', fontSize: '0.95rem' }}>
-                        Весь мой код открыт. Посмотрите архитектуру проектов и активность коммитов в моем профиле.
+                        Весь мой код открыт. Посмотрите архитектуру проектов, ботов и скриптов автоматизации в моем профиле.
                     </p>
                     <a 
                         href="https://github.com/sendox2012-debug" 
@@ -350,15 +400,15 @@ const App: React.FC = () => {
                             SENDO
                         </div>
                         <p className="footer-desc">
-                            Fullstack разработка любой сложности. <br />
-                            Пишите, обсудим ваш проект.
+                            Fullstack разработка, TG Mini Apps и автоматизация. <br />
+                            Пишите, обсудим ваш проект или задачу.
                         </p>
                     </div>
 
                     <div className="contact-cards">
                         <a href="https://t.me/tg_sendo" target="_blank" rel="noreferrer" className="contact-card">
                             <div className="contact-icon">
-                                <i data-lucide="send" style={{ width: 24, height: 24 }}></i>
+                                <Icon path="M22 2L11 13 M22 2l-7 20-4-9-9-4 20-7z" size={24} />
                             </div>
                             <div className="contact-info">
                                 <span className="contact-label">Telegram</span>
@@ -368,7 +418,7 @@ const App: React.FC = () => {
 
                         <a href="mailto:sendox2012@gmail.com" className="contact-card">
                             <div className="contact-icon">
-                                <i data-lucide="mail" style={{ width: 24, height: 24 }}></i>
+                                <Icon path="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z M22 6l-10 7L2 6" size={24} />
                             </div>
                             <div className="contact-info">
                                 <span className="contact-label">Email</span>
